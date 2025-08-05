@@ -1,0 +1,17 @@
+services:
+  mediawiki:
+    build: .
+    volumes:
+      - ./mediawiki:/var/www/html/w:cached
+      - db-data:/var/lib/mysql
+      - ./mw.conf:/etc/apache2/sites-enabled/mw.conf
+      - ./.htaccess:/var/www/html/.htaccess
+      - ./varnish.service:/lib/systemd/system/varnish.service
+      - ./apache-000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./apache-ports.conf:/etc/apache2/ports.conf
+      - ./varnish.vcl:/etc/varnish/default.vcl
+    ports:
+      - 80:80
+
+volumes:
+  db-data:

@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Standard reroute to domain/wiki/Page_Name
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^wiki/(.*)$ w/index.php/$1 [PT,L,QSA]
+RewriteRule ^wiki/*$ w/index.php [L,QSA]
+RewriteRule ^wiki$ w/index.php [L,QSA]
